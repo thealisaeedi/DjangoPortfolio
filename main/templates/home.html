@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Home | Portfolio
+{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+  <!-- Hero Section -->
+  <img src="{% static 'images/alisayidi.jpg' %}" 
+       alt="Ali Saeedi"
+       class="rounded-circle mb-3 shadow"
+       width="200" height="200">
+  <h1 class="display-4 fw-bold">Hi, I'm Ali 👋</h1>
+  <p class="lead">
+    Aspiring <strong>Data Scientist</strong> & <strong>Developer</strong><br>
+    Applying to universities abroad
+  </p>
+  <!-- Call to Action -->
+  <div class="mt-4">
+    <a href="{% url 'resume' %}" class="btn btn-primary btn-lg me-2">View Resume</a>
+    <a href="{% url 'projects' %}" class="btn btn-outline-secondary btn-lg">View Projects</a>
+  </div>
+</div>
+
+<hr class="my-5">
+
+<!-- Quick Highlights -->
+<div class="container text-center">
+  <h2>What I Do</h2>
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <h4>📊 Data Science</h4>
+      <p>Python, Pandas, Machine Learning, Data Visualization</p>
+    </div>
+    <div class="col-md-4">
+      <h4>💻 Web Development</h4>
+      <p>Django, FastAPI, JavaScript, React (beginner)</p>
+    </div>
+    <div class="col-md-4">
+      <h4>📈 Economics & Research</h4>
+      <p>Background in Economics, interested in research & academic projects</p>
+    </div>
+  </div>
+  <div class="container mt-4">
+  <h1>Welcome to My Portfolio</h1>
+  <p>This is my personal website where I showcase my work, skills, and experience.</p>
+
+  <!-- Projects Preview -->
+  <h2 class="mt-5">Latest Projects</h2>
+  <div class="row">
+    {% for project in latest_projects %}
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          {% if project.image %}
+            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ project.title }}</h5>
+            <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+            {% if project.link %}
+              <a href="{{ project.link }}" target="_blank" class="btn btn-primary">View</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No projects yet. Stay tuned!</p>
+    {% endfor %}
+  </div>
+
+  <!-- Link to full projects page -->
+  <div class="text-center mt-3">
+    <a href="{% url 'projects' %}" class="btn btn-dark">See All Projects</a>
+  </div>
+</div>
+</div>
+{% endblock %}

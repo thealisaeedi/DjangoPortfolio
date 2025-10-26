@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Experience | Portfolio {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/experience.css' %}">
+
+<div class="container">
+  <div class="bg-light py-5 text-center">
+    <h1 class="display-5 fw-bold">Education & Experience</h1>
+    <p class="lead">My academic background and work journey</p>
+  </div>
+
+  <!-- Education Section -->
+  <h2 class="mt-5">🎓 Education</h2>
+  <ul class="list-group mb-4">
+    {% for edu in education_list %}
+      <li class="list-group-item">
+        <strong>{{ edu.degree }}</strong> – {{ edu.institution }}
+        {% if edu.start_year or edu.end_year %}
+          ({{ edu.start_year }}{% if edu.end_year %} – {{ edu.end_year }}{% else %} – Present{% endif %})
+        {% endif %}
+        {% if edu.description %}
+          <p>{{ edu.description }}</p>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li class="list-group-item text-muted">No education added yet.</li>
+    {% endfor %}
+  </ul>
+
+  <!-- Experience Section -->
+  <h2>💼 Experience</h2>
+  <ul class="list-group mb-5">
+    {% for exp in experience_list %}
+      <li class="list-group-item">
+        <strong>{{ exp.role }}</strong> – {{ exp.company }}
+        {% if exp.start_year or exp.end_year %}
+          ({{ exp.start_year }}{% if exp.end_year %} – {{ exp.end_year }}{% else %} – Present{% endif %})
+        {% endif %}
+        {% if exp.description %}
+          <p>{{ exp.description }}</p>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li class="list-group-item text-muted">No experience added yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

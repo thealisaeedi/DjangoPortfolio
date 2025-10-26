@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}My Resumes | Portfolio{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/resume.css' %}">
+<div class="container py-5 text-center">
+  <h2 class="fw-bold display-6 text-primary mb-4">My Resumes</h2>
+  <p class="text-muted mb-5">Explore and download my academic and professional resumes.</p>
+
+  <!-- Main Row: Academic + Professional side by side -->
+  <div class="row justify-content-center g-5">
+
+    <!-- Academic Resumes -->
+    <div class="col-lg-6 col-md-12 d-flex flex-column align-items-center">
+      <section class="resume-section w-100">
+        <h4 class="mb-4 text-secondary border-bottom pb-2 w-auto mx-auto">🎓 Academic Resumes</h4>
+        <div class="row g-4 justify-content-center">
+          {% for r in academic_resumes %}
+            <div class="col-sm-6 col-md-6 d-flex justify-content-center">
+              <div class="resume-card shadow-sm border-0 p-4 text-center h-100">
+                <h5 class="fw-semibold mb-3 text-dark">{{ r.title }}</h5>
+                <div class="d-flex justify-content-center gap-2 mt-auto">
+                  <a href="{{ r.file.url }}" target="_blank" class="btn btn-outline-secondary btn-sm px-3">Preview</a>
+                  <a href="{{ r.file.url }}" class="btn btn-primary btn-sm px-3" download>Download</a>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <p class="text-muted fst-italic">No academic resumes uploaded yet.</p>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+
+    <!-- Professional Resumes -->
+    <div class="col-lg-6 col-md-12 d-flex flex-column align-items-center">
+      <section class="resume-section w-100">
+        <h4 class="mb-4 text-secondary border-bottom pb-2 w-auto mx-auto">💼 Professional Resumes</h4>
+        <div class="row g-4 justify-content-center">
+          {% for r in professional_resumes %}
+            <div class="col-sm-6 col-md-6 d-flex justify-content-center">
+              <div class="resume-card shadow-sm border-0 p-4 text-center h-100">
+                <h5 class="fw-semibold mb-3 text-dark">{{ r.title }}</h5>
+                <div class="d-flex justify-content-center gap-2 mt-auto">
+                  <a href="{{ r.file.url }}" target="_blank" class="btn btn-outline-secondary btn-sm px-3">Preview</a>
+                  <a href="{{ r.file.url }}" class="btn btn-primary btn-sm px-3" download>Download</a>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <p class="text-muted fst-italic">No professional resumes uploaded yet.</p>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+/* Dark Mode: Blog Archive Page */
+body.dark-mode .card {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  border-color: #333;
+}
+
+body.dark-mode .card a {
+  color: #9dcfff;
+  text-decoration: none;
+}
+
+body.dark-mode .card a:hover {
+  color: #74b9ff;
+}
+
+body.dark-mode .text-muted {
+  color: #b0b0b0 !important;
+}
+
+/* Pagination */
+body.dark-mode .pagination .page-item .page-link {
+  background-color: #2a2a2a;
+  color: #f1f1f1;
+  border-color: #444;
+}
+
+body.dark-mode .pagination .page-item.disabled .page-link {
+  background-color: #2a2a2a;
+  color: #888;
+}
+
+body.dark-mode .pagination .page-item .page-link:hover {
+  background-color: #3a3a3a;
+  color: #9dcfff;
+}

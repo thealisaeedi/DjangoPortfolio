@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Skills | Portfolio{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/skills.css' %}">
+
+<section class="skills-section py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h1 class="display-5 fw-bold">My Skills</h1>
+      <p class="text-muted">Technologies and tools I’ve worked with</p>
+    </div>
+
+    <div class="row g-4">
+      {% for category in categories %}
+        {% if category.skills.all %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card skill-card h-100 shadow-sm p-4">
+            <h4 class="category-title mb-3">
+              {% if category.icon_class %}
+                <i class="{{ category.icon_class }} me-2 text-primary"></i>
+              {% endif %}
+              {{ category.name }}
+            </h4>
+            <div class="skill-badges">
+              {% for skill in category.skills.all %}
+                <span class="badge {{ skill.color_class }}">
+                  {% if skill.icon_class %}
+                    <i class="{{ skill.icon_class }} me-1"></i>
+                  {% endif %}
+                  {{ skill.name }}
+                </span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

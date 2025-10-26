@@ -1,0 +1,32 @@
+
+/* Footer */
+.footer {
+  background: #121212; /* Dark background */
+  color: #f1f1f1; /* Light text color */
+  box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow for separation */
+}
+.footer p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.footer .social-icons a {
+  font-size: 1.25rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer .social-icons a:hover {
+  color: #ff9800;
+  transform: translateY(-3px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer p {
+    font-size: 0.9rem;
+  }
+
+  .footer .social-icons a {
+    font-size: 1.1rem;
+  }
+}

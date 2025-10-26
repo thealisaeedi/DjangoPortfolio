@@ -1,0 +1,46 @@
+/* Contact Page Styling */
+.contact-container {
+  min-height: 80vh;
+  background: linear-gradient(135deg, #f8f9fa, #eef2f7);
+}
+
+.contact-card {
+  max-width: 500px;
+  width: 100%;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Input fields */
+.contact-card input,
+.contact-card textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  transition: all 0.2s ease;
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 6px rgba(13, 110, 253, 0.25);
+  outline: none;
+}
+
+/* Button styling */
+.contact-card .btn-primary {
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.25s ease-in-out;
+}
+
+.contact-card .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(13, 110, 253, 0.3);
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}

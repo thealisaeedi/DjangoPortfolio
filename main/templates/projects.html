@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Projects | Portfolio {% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1>My Projects</h1>
+  <div class="row">
+    {% for project in projects %}
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          {% if project.image %}
+            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ project.title }}</h5>
+            <p class="card-text">{{ project.description }}</p>
+            {% if project.link %}
+              <a href="{{ project.link }}" target="_blank" class="btn btn-primary">View Project</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No projects yet. Please check back later!</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

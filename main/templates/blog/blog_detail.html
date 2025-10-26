@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+{% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+<div class="container mt-5">
+
+  {% if form.errors %}
+    <div class="alert alert-danger">There was an error. Please check the form.</div>
+  {% endif %}
+
+  {% if request.method == "POST" and not form.errors %}
+    <div class="alert alert-info">Your comment has been submitted and is awaiting approval.</div>
+  {% endif %}
+<div class="container mt-5">
+  <div class="blog-post-card p-4 shadow-sm mb-5 bg-white rounded">
+
+    <h2 class="post-title">{{ post.title }}</h2>
+    <p class="text-muted small">Published on {{ post.created_at|date:"F j, Y" }}</p>
+
+    {% if post.image %}
+      <img src="{{ post.image.url }}" class="img-fluid rounded mb-4" alt="{{ post.title }}">
+    {% endif %}
+
+    <div class="post-content mb-5">
+      {{ post.content|linebreaks }}
+    </div>
+
+    <hr>
+
+    <div class="all-comments mt-4">
+      <h4>Comments ({{ comments.count }})</h4>
+
+      {% if comments %}
+        <div class="comments-list">
+          {% for comment in comments %}
+            <div class="comment-container p-3 mb-3 border rounded">
+              <div class="comment-header fw-bold">{{ comment.name }}</div>
+              <div class="comment-body mt-1">{{ comment.body|linebreaks }}</div>
+              <a href="#" class="reply-btn small mt-2 d-inline-block" data-commentid="{{ comment.id }}">Reply</a>
+
+              {% for reply in comment.children %}
+                {% include "blog/comment_recursive.html" with comment=reply %}
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>No comments yet.</p>
+      {% endif %}
+    </div>
+
+    <hr>
+    <h3>Leave a Comment</h3>
+    <form method="post" class="comment-form mb-5">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="hidden" name="parent_id" id="parent_id">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <a href="{% url 'blog_list' %}" class="btn btn-secondary mt-3">Back to Blog</a>
+  </div>
+  <script>
+  document.querySelectorAll(".reply-btn").forEach(function(btn){
+      btn.addEventListener("click", function(e){
+          e.preventDefault();
+          document.getElementById("parent_id").value = this.dataset.commentid;
+          window.scrollTo(0,document.body.scrollHeight);
+      });
+  });
+  </script>
+</div>
+
+{% endblock %}
+

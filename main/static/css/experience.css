@@ -1,0 +1,35 @@
+
+
+/* Headings */
+
+h2 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.list-group-item {
+  border-radius: 10px !important;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.list-group-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.list-group-item p {
+  margin-top: 0.4rem;
+  color: #555;
+}
+
+.bg-light {
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.lead {
+  color: #666;
+}

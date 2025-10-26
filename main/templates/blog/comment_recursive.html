@@ -1,0 +1,11 @@
+
+
+<div class="comment-container comment-reply mt-2">
+  <div class="comment-header">{{ comment.name }} replied:</div>
+  <div class="comment-body">{{ comment.body }}</div>
+  <a href="#" class="reply-btn" data-commentid="{{ comment.id }}">Reply</a>
+
+  {% for reply in comment.children %}
+    {% include "blog/comment_recursive.html" with comment=reply %}
+  {% endfor %}
+</div>
